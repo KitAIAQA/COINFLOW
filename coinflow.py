@@ -76,17 +76,17 @@ def exchange():
 
 def update_base_label(event):
     """полное название базовой валюты"""
-    pass
+    base_label.config(text=currencies.get(base_combobox.get(), base_combobox.get()))
 
 
 def update_base2_label(event):
     """полное название второй базовой валюты"""
-    pass
+    base2_label.config(text=currencies.get(base2_combobox.get(), base2_combobox.get()))
 
 
 def update_currency_label(event):
     """полное название целевой валюты"""
-    pass
+    target_label.config(text=currencies.get(target_combobox.get(), target_combobox.get()))
 
 
 currencies = {
