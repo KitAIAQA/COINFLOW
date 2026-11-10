@@ -9,39 +9,45 @@ from tkmacosx import Button
 FONT_HEADER = ('Arial', 11)
 FONT_CODE = ('Courier', 11)
 
-# тикеры криптовалют и как они называются на сайте CoinGecko
-COINS = {  #14) словарь-переводчик: API не понимает 'BTC', только внутренний идентификатор 'bitcoin'
+# криптовалюты и как они называются на сайте CoinGecko
+COINS = {
     'BTC': 'bitcoin', 'ETH': 'ethereum', 'BNB': 'binancecoin',
     'USDT': 'tether', 'SOL': 'solana', 'ADA': 'cardano'
 }
 
 
-def get_usd_price(code):  #15) функция принимает тикер, например 'BTC' или 'RUB'
-    pass
-
-def exchange():  #27) расчёт курса
-    pass
-
-# подписи под списками: показываем полное название выбранной валюты
-def update_base_label(event):  #48)
-    pass
-
-def update_base2_label(event):  #50)
-    pass
-
-def update_currency_label(event):  #52)
+def get_usd_price(code):
+    """сколько долларов стоит 1 единица, без интерфейса"""
     pass
 
 
-# список валют: крипта и обычные деньги
-currencies = {  #12)
+def exchange():
+    """расчет курса и показ результата"""
+    pass
+
+
+def update_base_label(event):
+    """полное название базовой валюты"""
+    pass
+
+
+def update_base2_label(event):
+    """полное название второй базовой валюты"""
+    pass
+
+
+def update_currency_label(event):
+    """полное название целевой валюты"""
+    pass
+
+
+currencies = {
     'BNB': 'BNB', 'USDT': 'Tether USDt', 'ETH': 'Ethereum', 'BTC': 'Bitcoin',
     'SOL': 'Solana', 'ADA': 'Cardano',
     'EUR': 'Евро', 'USD': 'Доллар США', 'RUB': 'Российский рубль',
     'JPY': 'Японская йена', 'GBP': 'Фунт стерлингов', 'AUD': 'Австралийский доллар',
     'CAD': 'Канадский доллар', 'CHF': 'Швейцарский франк', 'CNY': 'Китайский юань'
-}  # словарь: ключ — тикер (короткий код), значение — полное название для показа пользователю, ключи нужны в двух
-## местах: в выпадающих списках (что показывать) и в API-запросах (что запрашивать), словарь объявлен до создания окна
+}
 
 root = Tk()
 root.title('COINFLOW — Курсы обмена криптовалют')
