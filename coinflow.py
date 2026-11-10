@@ -40,7 +40,38 @@ def get_usd_price(code):
 
 def exchange():
     """расчет курса и показ результата"""
-    pass
+    base = base_combobox.get().upper()
+    base2 = base2_combobox.get().upper()
+    target = target_combobox.get().upper()
+
+    if base == '' or base2 == '' or target == '':
+        mb.showwarning('Внимание', 'Выберите все валюты')
+        return
+
+    # получаем цены всех трёх валют в долларах
+    price1 = get_usd_price(base)
+    price2 = get_usd_price(base2)
+    price3 = get_usd_price(
+        target)
+
+    if price1 == None or price2 == None or price3 == None:
+        mb.showerror('Ошибка', 'Не удалось получить курс. Проверьте подключение к интернету.')
+        return
+
+    # курс = цена первой валюты / цена второй
+    rate1 = price1 / price3
+    rate2 = price2 / price3
+
+    base_name = currencies.get(base, base)
+    base2_name = currencies.get(base2, base2)
+    target_name = currencies.get(target, target)
+
+    mb.showinfo(
+        'Курс обмена',  #
+        'Курс: ' + str(round(rate1, 2)) + ' ' + target_name + ' за 1 ' + base_name + '\n'  
+                                                                                     'Курс: ' + str(
+            round(rate2, 2)) + ' ' + target_name + ' за 1 ' + base2_name
+    )
 
 
 def update_base_label(event):
