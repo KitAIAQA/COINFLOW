@@ -9,6 +9,9 @@ from tkmacosx import Button
 FONT_HEADER = ('Arial', 11)
 FONT_CODE = ('Courier', 11)
 
+# адрес запроса курса на сайте CoinGecko
+API = 'https://api.coingecko.com/api/v3/simple/price'
+
 # криптовалюты и как они называются на сайте CoinGecko
 COINS = {
     'BTC': 'bitcoin', 'ETH': 'ethereum', 'BNB': 'binancecoin',
@@ -17,8 +20,22 @@ COINS = {
 
 
 def get_usd_price(code):
-    """сколько долларов стоит 1 единица, без интерфейса"""
-    pass
+    """запрос курса, без интерфейса"""
+    if code == 'USD':
+        return 1
+
+    try:
+        if code in COINS:
+            coin = COINS[code]
+            r = requests.get(API, params={'ids': coin, 'vs_currencies': 'usd'}, timeout=5)
+            price = r.json()[coin]['usd']
+            return price
+        else:
+            r = requests.get(API, params={'ids': 'tether', 'vs_currencies': code.lower()}, timeout=5)
+            dollar_in_currency = r.json()['tether'][code.lower()]
+            return 1 / dollar_in_currency
+    except Exception:
+        return None
 
 
 def exchange():
